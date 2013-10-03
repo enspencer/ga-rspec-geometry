@@ -1,75 +1,77 @@
 require 'spec_helper'
 require_relative '../lib/geometry'
 
-module Geometry
 
-describe Triangle, "#perimeter" do
- 		it "should have a method called perimeter"
- 		expect(method(:perimeter))
-		end
+describe Geometry::Triangle do
+  
+  let(:a) { 3}
+  let(:b) { 4}
+  let(:c) { 6}
+  let(:perimeter) { 13}
 
-		it "should have three parameters"
-		parameters = method(:perimeter).parameters
-		expect(parameters[0]).to include(:req)
-		expect(parameters[0]).to include(:n)
-		expect(parameters.length).to eq 1
+  subject { Geometry::Triangle.new(a, b, c) }
+
+  it "should have an area" do
+    subject.area.should eq 0.0
+  end
+
+  # call a method named a on the subject
+  its(:a) { should eq 3}
+  its(:b) { should eq 4}
+
+  its(:perimeter) { should eq 13}
+
+  # same as above
+  # it "should have a perimeter" do
+  #   subject.perimeter.should eq perimeter
+  # end
+
+# THIS IS NOT WORKING AND I AM MAD
+  it "should return an array of the angles" do
+  	subject.angles.should eq ([48.1897, 41.8103, ])
 	end
 
-end
+  # nested test
+  describe "Another triangle" do
+    subject { Geometry::Triangle.new(a, b, c) }
+  end
 
-describe Triangle, "#area" do
-	it "should have a method called area"
-		expect(method(:area))
+end #end triangle describe
+
+
+describe Geometry::Rectangle do
+	let(:d) {3}
+	let(:e) {5}
+	let(:perimeter) { 16}
+
+  subject { Geometry::Rectangle.new(d, e) }
+
+ 	its(:d) { should eq 3}
+  its(:e) { should eq 5}
+
+  its(:perimeter) { should eq 16}
+
+  it "should have an area" do
+  	subject.area.should eq 15
+  end
+
+end #end rect describe
+
+describe Geometry::Circle do
+	let(:f) {4}
+	let(:circumference) {25.13274122872}
+
+	subject { Geometry::Circle.new(f) }
+
+	its(:f) { should eq 4}
+	its(:circumference) { should eq 25.13274122872}
+
+	# same as above
+	# it "should have a circumference" do
+ 	#    subject.circumference.should eq circumference
+ 	#  end
+
+	it "should have an area" do
 	end
 
-	it "should have three parameters"
-		parameters = method(:area).parameters
-		expect(parameters[0]).to include(:req)
-		expect(parameters[0]).to include(:n)
-		expect(parameters.length).to eq 1
-	end
-
-end
-
-
-
-	it "should have an array of 3 angles that add up to 180"
-	end
-
-
-describe Rectangle, "#perimeter" do
-	it "should have a method called perimeter"
-		expect(method(:perimeter))
-	end
-
-	it "should have two parameters, length and width"
-	end
-
-end
-
-describe Rectangle, "#area" do
-	it "should have a method called area"
-		expect(method(:area))
-	end
-
-	it "should have two parameters, length and width"
-	end
-
-end
-
-describe Circle, "#circumference" do
-	it "should have a method called circumference"
-		expect(method(:circumference))
-	end
-end
-
-describe Circle, "#area" do
-	it "should have a method called area"
-		expect(method(:area))
-	end
-end
-
-	it "should have one parameter called radius"
-	end
-
-end
+end #end circle describe
